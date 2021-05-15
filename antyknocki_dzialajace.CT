@@ -1,0 +1,748 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="34">
+  <Forms>
+    <CETrainer Class="TTrainerForm" Encoding="Ascii85">eN?YG):ZfO=E2lIY]bByfhoJNV!.O6aY:;^n@,wRD-];t?mR4kj=xFe$C3pLhUstc3CNa^I3.vtT{kKMqjM}MKSBsc:e:W$OOh2)p0jdc]9V]1jbO(rH/}[x;{t-^KS.%Fsa_xnPg%/6;f4UtlO?ksp+y7DclosYs?Hpd=9(Viz6Ck5-eSVSr*(j:U4O*4lA94+WfhU{WXa.B1Sos}ff6}]58??wxG1bRh:PfW!%3{7N%w@+Na_8FgiHa8NCDIiF7d;T,.K3HAoL$ls/__}Dh!;[YM/?FHPB%pY%r_p@?!a-38_b7+L-jGu;(iqiODo9Qz)?VvV/(e%^eO@+9$MOcY$#?mco:qm}vXX^CgwpYa]4g*MEm:Fx?q0arO/Yt@JxiWouqLE8H}fx_GgtyCdn!a6zs;8-8%#1@a!}U)yie-?fuZM$Aj#$:pJ1fBiw:.,DVJVSm,o@pNk-_KuL,lq,=,5t#yY1_fbQd;+.prk{mB=WAsJH_k$)z0n7Z:Wyplq!jEvqpUR1j]3,fi2cbh!ozUfqD;FeKHJd-vl%4)0c_T[e-y=,JK(G_0sq[t^MvAfWX^T!W0G7)j1FZiZ[PI2+6nF$tc!$zaJ_l?chIA:CXye;?T/LJ0kkmO?{xS2VI^N:GqR?K3et=/$ltiJQSV$jeOM*BCRLrD[2DH,cy/ll;J8{T1xxbk9k3.U*_c,2g^f!0SZ*O)98(Y78HzQjKuhRET)*?5ZX{6i56G$#/FQ-Q5o4h^$*{/aCq^n)</CETrainer>
+  </Forms>
+  <CheatEntries>
+    <CheatEntry>
+      <ID>7</ID>
+      <Description>"0%"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : javaw.exe
+  Version: 
+  Date   : 2021-03-23
+  Author : Dawid
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,C5 FB 11 42 50 * 8B F2 * BF 78) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  //vmovsd [rdx+50],xmm0
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db C5 FB 11 42 50
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 037DC01E
+
+037DBFE7: 55                             - push rbp
+037DBFE8: 48 83 EC 60                    - sub rsp,60
+037DBFEC: 48 BE 78 92 3E 45 00 00 00 00  - mov rsi,00000000453E9278
+037DBFF6: 8B BE DC 00 00 00              - mov edi,[rsi+000000DC]
+037DBFFC: 83 C7 08                       - add edi,08
+037DBFFF: 89 BE DC 00 00 00              - mov [rsi+000000DC],edi
+037DC005: 48 BE 38 DF 03 2A 00 00 00 00  - mov rsi,000000002A03DF38
+037DC00F: 81 E7 F8 1F 00 00              - and edi,00001FF8
+037DC015: 83 FF 00                       - cmp edi,00
+037DC018: 0F 84 F3 00 00 00              - je 037DC111
+// ---------- INJECTING HERE ----------
+037DC01E: C5 FB 11 42 50                 - vmovsd [rdx+50],xmm0
+// ---------- DONE INJECTING  ----------
+037DC023: 48 8B F2                       - mov rsi,rdx
+037DC026: 48 BF 78 92 3E 45 00 00 00 00  - mov rdi,00000000453E9278
+037DC030: 8B 76 08                       - mov esi,[rsi+08]
+037DC033: 48 C1 E6 03                    - shl rsi,03
+037DC037: 48 3B B7 30 01 00 00           - cmp rsi,[rdi+00000130]
+037DC03E: 75 0D                          - jne 037DC04D
+037DC040: 48 83 87 38 01 00 00 01        - add qword ptr [rdi+00000138],01
+037DC048: E9 66 00 00 00                 - jmp 037DC0B3
+037DC04D: 48 3B B7 40 01 00 00           - cmp rsi,[rdi+00000140]
+037DC054: 75 0D                          - jne 037DC063
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>8</ID>
+      <Description>"80%"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : javaw.exe
+  Version: 
+  Date   : 2021-03-23
+  Author : Dawid
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,C5 FB 11 42 28 * * * * 70 * 83) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  //vmovsd [rdx+28],xmm0
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db C5 FB 11 42 28
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 037DC0FB
+
+037DC0BD: 8B BE DC 00 00 00              - mov edi,[rsi+000000DC]
+037DC0C3: 83 C7 08                       - add edi,08
+037DC0C6: 89 BE DC 00 00 00              - mov [rsi+000000DC],edi
+037DC0CC: 48 BE 50 65 03 2A 00 00 00 00  - mov rsi,000000002A036550
+037DC0D6: 81 E7 F8 FF 7F 00              - and edi,007FFFF8
+037DC0DC: 83 FF 00                       - cmp edi,00
+037DC0DF: 0F 84 43 00 00 00              - je 037DC128
+037DC0E5: 48 BE 80 F0 7A C0 05 00 00 00  - mov rsi,00000005C07AF080
+037DC0EF: C5 FB 10 86 A8 00 00 00        - vmovsd xmm0,[rsi+000000A8]
+037DC0F7: C5 FB 58 C1                    - vaddsd xmm0,xmm0,xmm1
+// ---------- INJECTING HERE ----------
+037DC0FB: C5 FB 11 42 28                 - vmovsd [rdx+28],xmm0
+// ---------- DONE INJECTING  ----------
+037DC100: C5 FB 11 52 70                 - vmovsd [rdx+70],xmm2
+037DC105: 48 83 C4 60                    - add rsp,60
+037DC109: 5D                             - pop rbp
+037DC10A: 85 05 F0 3F ED FE              - test [026B0100],eax
+037DC110: C3                             - ret 
+037DC111: 48 89 74 24 08                 - mov [rsp+08],rsi
+037DC116: 48 C7 04 24 FF FF FF FF        - mov qword ptr [rsp],FFFFFFFFFFFFFFFF
+037DC11E: E8 BD 2B 2D FF                 - call 02AAECE0
+037DC123: E9 F6 FE FF FF                 - jmp 037DC01E
+037DC128: 48 89 74 24 08                 - mov [rsp+08],rsi
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry Color="80000008">
+      <Description>Change of mov ecx,[rbx+rax-30]</Description>
+      <AddressString>nvoglv64.dll+E8A101</AddressString>
+      <Before>
+        <Byte>0F</Byte>
+        <Byte>C9</Byte>
+        <Byte>89</Byte>
+        <Byte>48</Byte>
+        <Byte>CC</Byte>
+      </Before>
+      <Actual>
+        <Byte>8B</Byte>
+        <Byte>4C</Byte>
+        <Byte>03</Byte>
+        <Byte>D0</Byte>
+      </Actual>
+      <After>
+        <Byte>0F</Byte>
+        <Byte>C9</Byte>
+        <Byte>89</Byte>
+        <Byte>48</Byte>
+        <Byte>D0</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="80000008">
+      <Description>Change of mov [rax-30],ecx</Description>
+      <AddressString>nvoglv64.dll+E8A107</AddressString>
+      <Before>
+        <Byte>4C</Byte>
+        <Byte>03</Byte>
+        <Byte>D0</Byte>
+        <Byte>0F</Byte>
+        <Byte>C9</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>48</Byte>
+        <Byte>D0</Byte>
+      </Actual>
+      <After>
+        <Byte>8B</Byte>
+        <Byte>4C</Byte>
+        <Byte>03</Byte>
+        <Byte>D4</Byte>
+        <Byte>0F</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="80000008">
+      <Description>Change of mov ecx,[rbx+rax-1C]</Description>
+      <AddressString>nvoglv64.dll+E8A12E</AddressString>
+      <Before>
+        <Byte>0F</Byte>
+        <Byte>C9</Byte>
+        <Byte>89</Byte>
+        <Byte>48</Byte>
+        <Byte>E0</Byte>
+      </Before>
+      <Actual>
+        <Byte>8B</Byte>
+        <Byte>4C</Byte>
+        <Byte>03</Byte>
+        <Byte>E4</Byte>
+      </Actual>
+      <After>
+        <Byte>0F</Byte>
+        <Byte>C9</Byte>
+        <Byte>89</Byte>
+        <Byte>48</Byte>
+        <Byte>E4</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="80000008">
+      <Description>Change of mov [rax-20],ecx</Description>
+      <AddressString>nvoglv64.dll+E8A12B</AddressString>
+      <Before>
+        <Byte>4C</Byte>
+        <Byte>03</Byte>
+        <Byte>E0</Byte>
+        <Byte>0F</Byte>
+        <Byte>C9</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>48</Byte>
+        <Byte>E0</Byte>
+      </Actual>
+      <After>
+        <Byte>8B</Byte>
+        <Byte>4C</Byte>
+        <Byte>03</Byte>
+        <Byte>E4</Byte>
+        <Byte>0F</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="80000008">
+      <Description>Change of mov [rdi+04],eax</Description>
+      <AddressString>nvoglv64.dll+E62A15</AddressString>
+      <Before>
+        <Byte>86</Byte>
+        <Byte>FC</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>47</Byte>
+        <Byte>04</Byte>
+      </Actual>
+      <After>
+        <Byte>8B</Byte>
+        <Byte>86</Byte>
+        <Byte>00</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="80000008">
+      <Description>Change of mov [rsp+10],rbx</Description>
+      <AddressString>nvoglv64.dll+E9D860</AddressString>
+      <Before>
+        <Byte>5E</Byte>
+        <Byte>5D</Byte>
+        <Byte>5B</Byte>
+        <Byte>C3</Byte>
+        <Byte>CC</Byte>
+      </Before>
+      <Actual>
+        <Byte>48</Byte>
+        <Byte>89</Byte>
+        <Byte>5C</Byte>
+        <Byte>24</Byte>
+        <Byte>10</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>89</Byte>
+        <Byte>6C</Byte>
+        <Byte>24</Byte>
+        <Byte>18</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="80000008">
+      <Description>Change of movaps [rax-68],xmm11</Description>
+      <AddressString>nvoglv64.dll+A292EA</AddressString>
+      <Before>
+        <Byte>44</Byte>
+        <Byte>0F</Byte>
+        <Byte>29</Byte>
+        <Byte>50</Byte>
+        <Byte>A8</Byte>
+      </Before>
+      <Actual>
+        <Byte>44</Byte>
+        <Byte>0F</Byte>
+        <Byte>29</Byte>
+        <Byte>58</Byte>
+        <Byte>98</Byte>
+      </Actual>
+      <After>
+        <Byte>44</Byte>
+        <Byte>0F</Byte>
+        <Byte>29</Byte>
+        <Byte>60</Byte>
+        <Byte>88</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="80000008">
+      <Description>Change of movaps [rax-78],xmm12</Description>
+      <AddressString>nvoglv64.dll+A292EF</AddressString>
+      <Before>
+        <Byte>44</Byte>
+        <Byte>0F</Byte>
+        <Byte>29</Byte>
+        <Byte>58</Byte>
+        <Byte>98</Byte>
+      </Before>
+      <Actual>
+        <Byte>44</Byte>
+        <Byte>0F</Byte>
+        <Byte>29</Byte>
+        <Byte>60</Byte>
+        <Byte>88</Byte>
+      </Actual>
+      <After>
+        <Byte>44</Byte>
+        <Byte>0F</Byte>
+        <Byte>29</Byte>
+        <Byte>A8</Byte>
+        <Byte>78</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="80000008">
+      <Description>Change of mov [rsp+50],rbp</Description>
+      <AddressString>043316C8</AddressString>
+      <Before>
+        <Byte>84</Byte>
+        <Byte>7A</Byte>
+        <Byte>EF</Byte>
+        <Byte>FF</Byte>
+        <Byte>FF</Byte>
+      </Before>
+      <Actual>
+        <Byte>48</Byte>
+        <Byte>89</Byte>
+        <Byte>6C</Byte>
+        <Byte>24</Byte>
+        <Byte>50</Byte>
+      </Actual>
+      <After>
+        <Byte>4C</Byte>
+        <Byte>89</Byte>
+        <Byte>6C</Byte>
+        <Byte>24</Byte>
+        <Byte>48</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Change of vaddsd xmm0,xmm0,xmm1</Description>
+      <AddressString>04A98237</AddressString>
+      <Before>
+        <Byte>86</Byte>
+        <Byte>A8</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>C5</Byte>
+        <Byte>FB</Byte>
+        <Byte>58</Byte>
+        <Byte>C1</Byte>
+      </Actual>
+      <After>
+        <Byte>C5</Byte>
+        <Byte>FB</Byte>
+        <Byte>11</Byte>
+        <Byte>42</Byte>
+        <Byte>28</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Change of vmovsd xmm0,[rsi+000000A8]</Description>
+      <AddressString>04A9822F</AddressString>
+      <Before>
+        <Byte>C0</Byte>
+        <Byte>06</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>C5</Byte>
+        <Byte>FB</Byte>
+        <Byte>10</Byte>
+        <Byte>86</Byte>
+        <Byte>A8</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>C5</Byte>
+        <Byte>FB</Byte>
+        <Byte>58</Byte>
+        <Byte>C1</Byte>
+        <Byte>C5</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Change of vmovsd [rdx+50],xmm0</Description>
+      <AddressString>04A9815E</AddressString>
+      <Before>
+        <Byte>84</Byte>
+        <Byte>F3</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>C5</Byte>
+        <Byte>FB</Byte>
+        <Byte>11</Byte>
+        <Byte>42</Byte>
+        <Byte>50</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>F2</Byte>
+        <Byte>48</Byte>
+        <Byte>BF</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Change of vmovsd xmm0,[rsi+000000A8]</Description>
+      <AddressString>0449922F</AddressString>
+      <Before>
+        <Byte>80</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>C5</Byte>
+        <Byte>FB</Byte>
+        <Byte>10</Byte>
+        <Byte>86</Byte>
+        <Byte>A8</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>C5</Byte>
+        <Byte>FB</Byte>
+        <Byte>58</Byte>
+        <Byte>C1</Byte>
+        <Byte>C5</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Change of vaddsd xmm0,xmm0,xmm1</Description>
+      <AddressString>04499237</AddressString>
+      <Before>
+        <Byte>86</Byte>
+        <Byte>A8</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>C5</Byte>
+        <Byte>FB</Byte>
+        <Byte>58</Byte>
+        <Byte>C1</Byte>
+      </Actual>
+      <After>
+        <Byte>C5</Byte>
+        <Byte>FB</Byte>
+        <Byte>11</Byte>
+        <Byte>42</Byte>
+        <Byte>28</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Change of vmovsd [rdx+28],xmm0</Description>
+      <AddressString>0449923B</AddressString>
+      <Before>
+        <Byte>00</Byte>
+        <Byte>C5</Byte>
+        <Byte>FB</Byte>
+        <Byte>58</Byte>
+        <Byte>C1</Byte>
+      </Before>
+      <Actual>
+        <Byte>C5</Byte>
+        <Byte>FB</Byte>
+        <Byte>11</Byte>
+        <Byte>42</Byte>
+        <Byte>28</Byte>
+      </Actual>
+      <After>
+        <Byte>C5</Byte>
+        <Byte>FB</Byte>
+        <Byte>11</Byte>
+        <Byte>52</Byte>
+        <Byte>70</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Change of vmovsd [rdx+70],xmm2</Description>
+      <AddressString>04499240</AddressString>
+      <Before>
+        <Byte>C5</Byte>
+        <Byte>FB</Byte>
+        <Byte>11</Byte>
+        <Byte>42</Byte>
+        <Byte>28</Byte>
+      </Before>
+      <Actual>
+        <Byte>C5</Byte>
+        <Byte>FB</Byte>
+        <Byte>11</Byte>
+        <Byte>52</Byte>
+        <Byte>70</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>83</Byte>
+        <Byte>C4</Byte>
+        <Byte>60</Byte>
+        <Byte>5D</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="80000008">
+      <Description>Change of vmovsd [rdx+70],xmm2</Description>
+      <AddressString>037DC100</AddressString>
+      <Before>
+        <Byte>C5</Byte>
+        <Byte>FB</Byte>
+        <Byte>11</Byte>
+        <Byte>42</Byte>
+        <Byte>28</Byte>
+      </Before>
+      <Actual>
+        <Byte>C5</Byte>
+        <Byte>FB</Byte>
+        <Byte>11</Byte>
+        <Byte>52</Byte>
+        <Byte>70</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>83</Byte>
+        <Byte>C4</Byte>
+        <Byte>60</Byte>
+        <Byte>5D</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="80000008">
+      <Description>Change of vmovsd [rdx+28],xmm0</Description>
+      <AddressString>037DC0FB</AddressString>
+      <Before>
+        <Byte>00</Byte>
+        <Byte>C5</Byte>
+        <Byte>FB</Byte>
+        <Byte>58</Byte>
+        <Byte>C1</Byte>
+      </Before>
+      <Actual>
+        <Byte>C5</Byte>
+        <Byte>FB</Byte>
+        <Byte>11</Byte>
+        <Byte>42</Byte>
+        <Byte>28</Byte>
+      </Actual>
+      <After>
+        <Byte>C5</Byte>
+        <Byte>FB</Byte>
+        <Byte>11</Byte>
+        <Byte>52</Byte>
+        <Byte>70</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="80000008">
+      <Description>Change of vaddsd xmm0,xmm0,xmm1</Description>
+      <AddressString>037DC0F7</AddressString>
+      <Before>
+        <Byte>86</Byte>
+        <Byte>A8</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>C5</Byte>
+        <Byte>FB</Byte>
+        <Byte>58</Byte>
+        <Byte>C1</Byte>
+      </Actual>
+      <After>
+        <Byte>C5</Byte>
+        <Byte>FB</Byte>
+        <Byte>11</Byte>
+        <Byte>42</Byte>
+        <Byte>28</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="80000008">
+      <Description>Change of vmovsd xmm0,[rsi+000000A8]</Description>
+      <AddressString>037DC0EF</AddressString>
+      <Before>
+        <Byte>C0</Byte>
+        <Byte>05</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>C5</Byte>
+        <Byte>FB</Byte>
+        <Byte>10</Byte>
+        <Byte>86</Byte>
+        <Byte>A8</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>C5</Byte>
+        <Byte>FB</Byte>
+        <Byte>58</Byte>
+        <Byte>C1</Byte>
+        <Byte>C5</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="80000008">
+      <Description>Change of vmovsd [rdx+50],xmm0</Description>
+      <AddressString>037DC01E</AddressString>
+      <Before>
+        <Byte>84</Byte>
+        <Byte>F3</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>C5</Byte>
+        <Byte>FB</Byte>
+        <Byte>11</Byte>
+        <Byte>42</Byte>
+        <Byte>50</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>F2</Byte>
+        <Byte>48</Byte>
+        <Byte>BF</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="80000008">
+      <Description>Change of mov [rsp+78],rax</Description>
+      <AddressString>037DC191</AddressString>
+      <Before>
+        <Byte>EC</Byte>
+        <Byte>80</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>48</Byte>
+        <Byte>89</Byte>
+        <Byte>44</Byte>
+        <Byte>24</Byte>
+        <Byte>78</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>89</Byte>
+        <Byte>4C</Byte>
+        <Byte>24</Byte>
+        <Byte>70</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+  <LuaScript>--TRAINERGENERATORSTART--
+--This is autogenerated code. Changing code in this block will
+--get erased and rewritten if you regenerate the trainer code
+
+--Uncomment the following line if this is a Cheat Table format trainer and you don't want CE to show (Tip, save as .CETRAINER alternatively)
+--hideAllCEWindows()
+
+RequiredCEVersion=7.2
+if (getCEVersion==nil) or (getCEVersion()&lt;RequiredCEVersion) then
+  messageDialog('Please install Mugen JinFuu '..RequiredCEVersion, mtError, mbOK)
+  closeCE()
+end
+addresslist=getAddressList()
+memrec5=addresslist.getMemoryRecordByID(5)
+
+memrec5_hotkey0=memrec5.getHotkeyByID(0)
+
+function onPostHotkey0(Hotkey)
+  --Executed after the "toggle*" cheat got executed
+  local memrec=Hotkey.Owner
+  local isActive=memrec.Active --get the state after the hotkey got triggered
+  CETrainer.CHEAT0.setActive(isActive) --gui update, nothing else
+  if gPlaySoundOnAction then
+    if isActive then
+      playSound(gActivateSound)
+    else
+      playSound(gDeactivateSound)
+    end
+  end
+end
+
+memrec5_hotkey0.onPostHotkey=onPostHotkey0
+
+CETrainer.SEPERATOR.Visible=false
+
+getAutoAttachList().add("javaw.exe")
+gPlaySoundOnAction=false
+CETrainer.show()
+function AboutClick()
+  showMessage(gAboutText)
+end
+gAboutText=[[bind x]]
+
+function CloseClick()
+  --called by the close button onClick event, and when closing the form
+  closeCE()
+  return caFree --onClick doesn't care, but onClose would like a result
+end
+
+--TRAINERGENERATORSTOP--
+</LuaScript>
+</CheatTable>

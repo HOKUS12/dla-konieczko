@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable MugenJinFuuTableVersion="34">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"clear xray"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : javaw.exe
+  Version: 
+  Date   : 2021-03-26
+  Author : zihho
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,nvoglv64.dll,89 7B 10 48 C1 E8 20) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [rbx+10],1
+  shr rax,20
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 7B 10 48 C1 E8 20
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: nvoglv64.dll+E9C4ED
+
+nvoglv64.dll+E9C4C9: 48 8B 06              - mov rax,[rsi]
+nvoglv64.dll+E9C4CC: 49 8B CE              - mov rcx,r14
+nvoglv64.dll+E9C4CF: 48 C1 E8 20           - shr rax,20
+nvoglv64.dll+E9C4D3: 89 43 04              - mov [rbx+04],eax
+nvoglv64.dll+E9C4D6: 8B 06                 - mov eax,[rsi]
+nvoglv64.dll+E9C4D8: 41 8D 50 26           - lea edx,[r8+26]
+nvoglv64.dll+E9C4DC: 89 43 08              - mov [rbx+08],eax
+nvoglv64.dll+E9C4DF: 4C 8B 4E 08           - mov r9,[rsi+08]
+nvoglv64.dll+E9C4E3: 41 FF 96 C0 0C 00 00  - call qword ptr [r14+00000CC0]
+nvoglv64.dll+E9C4EA: 48 8B C7              - mov rax,rdi
+// ---------- INJECTING HERE ----------
+nvoglv64.dll+E9C4ED: 89 7B 10              - mov [rbx+10],edi
+// ---------- DONE INJECTING  ----------
+nvoglv64.dll+E9C4F0: 48 C1 E8 20           - shr rax,20
+nvoglv64.dll+E9C4F4: 0F B6 C0              - movzx eax,al
+nvoglv64.dll+E9C4F7: 89 43 0C              - mov [rbx+0C],eax
+nvoglv64.dll+E9C4FA: 8B 44 24 70           - mov eax,[rsp+70]
+nvoglv64.dll+E9C4FE: 89 43 18              - mov [rbx+18],eax
+nvoglv64.dll+E9C501: 8B 44 24 78           - mov eax,[rsp+78]
+nvoglv64.dll+E9C505: 89 43 1C              - mov [rbx+1C],eax
+nvoglv64.dll+E9C508: 48 8D 43 20           - lea rax,[rbx+20]
+nvoglv64.dll+E9C50C: C7 43 14 01 00 00 00  - mov [rbx+14],00000001
+nvoglv64.dll+E9C513: 48 8B 5C 24 58        - mov rbx,[rsp+58]
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry Color="20000000">
+      <Description>Change of mov [rcx+24],eax</Description>
+      <AddressString>nvoglv64.dll+E1285C</AddressString>
+      <Before>
+        <Byte>41</Byte>
+        <Byte>20</Byte>
+        <Byte>8B</Byte>
+        <Byte>47</Byte>
+        <Byte>24</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>41</Byte>
+        <Byte>24</Byte>
+      </Actual>
+      <After>
+        <Byte>8B</Byte>
+        <Byte>47</Byte>
+        <Byte>34</Byte>
+        <Byte>89</Byte>
+        <Byte>41</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Change of mov [rcx+28],eax</Description>
+      <AddressString>nvoglv64.dll+E12862</AddressString>
+      <Before>
+        <Byte>41</Byte>
+        <Byte>24</Byte>
+        <Byte>8B</Byte>
+        <Byte>47</Byte>
+        <Byte>34</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>41</Byte>
+        <Byte>28</Byte>
+      </Actual>
+      <After>
+        <Byte>8B</Byte>
+        <Byte>47</Byte>
+        <Byte>08</Byte>
+        <Byte>89</Byte>
+        <Byte>41</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Change of mov [rbx+10],edi</Description>
+      <AddressString>nvoglv64.dll+E9C4ED</AddressString>
+      <Before>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>C7</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>7B</Byte>
+        <Byte>10</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>C1</Byte>
+        <Byte>E8</Byte>
+        <Byte>20</Byte>
+        <Byte>0F</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Change of mov [rbx+0C],eax</Description>
+      <AddressString>nvoglv64.dll+E9C4F7</AddressString>
+      <Before>
+        <Byte>E8</Byte>
+        <Byte>20</Byte>
+        <Byte>0F</Byte>
+        <Byte>B6</Byte>
+        <Byte>C0</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>43</Byte>
+        <Byte>0C</Byte>
+      </Actual>
+      <After>
+        <Byte>8B</Byte>
+        <Byte>44</Byte>
+        <Byte>24</Byte>
+        <Byte>70</Byte>
+        <Byte>89</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+  <Comments>Info about this table:
+</Comments>
+</CheatTable>

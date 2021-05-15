@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable MugenJinFuuTableVersion="34">
+  <Forms>
+    <CETrainer Class="TTrainerForm" Encoding="Ascii85">eN?YG):ZfO=E2lIY]bByfhoJNV!.O6aY:;^n@,wRD-];t?mR4kj=xFe$C3pLhUstc3CNa^I3.vtT{kKMqjM}MKSBsc:e:W$OOh2)p0jdc]9V]1jbO(rH/}[x;{t-^KS.%Fsa_xnPg%/6;f4UtlO?ksp+y7DclosYs?Hpd=9(Viz6Ck5-eSVSr*(j:U4O*4lA94+WfhU{WXa.B1Sos}ff6}]58??wxG1bRh:PfW!%3{7N%w@+Na_8FgiHa8NCDIiF7d;T,.K3HAoL$ls/__}Dh!;[YM/?FHPB%pY%r_p@?!a-38_b7+L-jGu;(iqiODo9Qz)?VvV/(e%^eO@+9$MOcY$#?mco:qm}vXX^CgwpYa]4g*MEm:Fx?q0arO/Yt@JxiWouqLE8H}fx_GgtyCdn!a6zs;8-8%#1@a!}U)yie-?fuZM$Aj#$:pJ1fBiw:.,DVJVSm,o@pNk-_KuL,lq,=,5t#yY1_fbQd;+.prk{mB=WAsJH_k$)z0n7Z:Wyplq!jEvqpUR1j]3,fi2cbh!ozUfqD;FeKHJd-vl%4)0c_T[e-y=,JK(G_0sq[t^MvAfWX^T!W0G7)j1FZiZ[PI2+6nF$tc!$zaJ_l?chIA:CXye;?T/LJ0kkmO?{xS2VI^N:GqR?K3et=/$ltiJQSV$jeOM*BCRLrD[2DH,cy/ll;J8{T1xxbk9k3.U*_c,2g^f!0SZ*O)98(Y78HzQjKuhRET)*?5ZX{6i56G$#/FQ-Q5o4h^$*{/aCq^n)</CETrainer>
+  </Forms>
+  <CheatEntries>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"anty knock 100"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : javaw.exe
+  Version: 
+  Date   : 2021-03-15
+  Author : makumbawtf
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,C5 FB 11 52 70 * 83) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  //vmovsd [rdx+70],xmm2
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db C5 FB 11 52 70
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 04499240
+
+04499203: 83 C7 08                       - add edi,08
+04499206: 89 BE DC 00 00 00              - mov [rsi+000000DC],edi
+0449920C: 48 BE 50 65 B3 1D 00 00 00 00  - mov rsi,000000001DB36550
+04499216: 81 E7 F8 FF 7F 00              - and edi,007FFFF8
+0449921C: 83 FF 00                       - cmp edi,00
+0449921F: 0F 84 43 00 00 00              - je 04499268
+04499225: 48 BE 08 79 C6 80 00 00 00 00  - mov rsi,0000000080C67908
+0449922F: C5 FB 10 86 A8 00 00 00        - vmovsd xmm0,[rsi+000000A8]
+04499237: C5 FB 58 C1                    - vaddsd xmm0,xmm0,xmm1
+0449923B: C5 FB 11 42 28                 - vmovsd [rdx+28],xmm0
+// ---------- INJECTING HERE ----------
+04499240: C5 FB 11 52 70                 - vmovsd [rdx+70],xmm2
+// ---------- DONE INJECTING  ----------
+04499245: 48 83 C4 60                    - add rsp,60
+04499249: 5D                             - pop rbp
+0449924A: 85 05 B0 6E 2A FE              - test [02740100],eax
+04499250: C3                             - ret 
+04499251: 48 89 74 24 08                 - mov [rsp+08],rsi
+04499256: 48 C7 04 24 FF FF FF FF        - mov qword ptr [rsp],FFFFFFFFFFFFFFFF
+0449925E: E8 3D BE 7B FE                 - call 02C550A0
+04499263: E9 F6 FE FF FF                 - jmp 0449915E
+04499268: 48 89 74 24 08                 - mov [rsp+08],rsi
+0449926D: 48 C7 04 24 FF FF FF FF        - mov qword ptr [rsp],FFFFFFFFFFFFFFFF
+}
+</AssemblerScript>
+      <Hotkeys>
+        <Hotkey>
+          <Action>Toggle Activation</Action>
+          <Keys>
+            <Key>88</Key>
+          </Keys>
+          <ID>0</ID>
+        </Hotkey>
+      </Hotkeys>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry Color="20000000">
+      <Description>Change of vaddsd xmm0,xmm0,xmm1</Description>
+      <AddressString>04A98237</AddressString>
+      <Before>
+        <Byte>86</Byte>
+        <Byte>A8</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>C5</Byte>
+        <Byte>FB</Byte>
+        <Byte>58</Byte>
+        <Byte>C1</Byte>
+      </Actual>
+      <After>
+        <Byte>C5</Byte>
+        <Byte>FB</Byte>
+        <Byte>11</Byte>
+        <Byte>42</Byte>
+        <Byte>28</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Change of vmovsd xmm0,[rsi+000000A8]</Description>
+      <AddressString>04A9822F</AddressString>
+      <Before>
+        <Byte>C0</Byte>
+        <Byte>06</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>C5</Byte>
+        <Byte>FB</Byte>
+        <Byte>10</Byte>
+        <Byte>86</Byte>
+        <Byte>A8</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>C5</Byte>
+        <Byte>FB</Byte>
+        <Byte>58</Byte>
+        <Byte>C1</Byte>
+        <Byte>C5</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Change of vmovsd [rdx+50],xmm0</Description>
+      <AddressString>04A9815E</AddressString>
+      <Before>
+        <Byte>84</Byte>
+        <Byte>F3</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>C5</Byte>
+        <Byte>FB</Byte>
+        <Byte>11</Byte>
+        <Byte>42</Byte>
+        <Byte>50</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>F2</Byte>
+        <Byte>48</Byte>
+        <Byte>BF</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="80000008">
+      <Description>Change of vmovsd xmm0,[rsi+000000A8]</Description>
+      <AddressString>0449922F</AddressString>
+      <Before>
+        <Byte>80</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>C5</Byte>
+        <Byte>FB</Byte>
+        <Byte>10</Byte>
+        <Byte>86</Byte>
+        <Byte>A8</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>C5</Byte>
+        <Byte>FB</Byte>
+        <Byte>58</Byte>
+        <Byte>C1</Byte>
+        <Byte>C5</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="80000008">
+      <Description>Change of vaddsd xmm0,xmm0,xmm1</Description>
+      <AddressString>04499237</AddressString>
+      <Before>
+        <Byte>86</Byte>
+        <Byte>A8</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>C5</Byte>
+        <Byte>FB</Byte>
+        <Byte>58</Byte>
+        <Byte>C1</Byte>
+      </Actual>
+      <After>
+        <Byte>C5</Byte>
+        <Byte>FB</Byte>
+        <Byte>11</Byte>
+        <Byte>42</Byte>
+        <Byte>28</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="80000008">
+      <Description>Change of vmovsd [rdx+28],xmm0</Description>
+      <AddressString>0449923B</AddressString>
+      <Before>
+        <Byte>00</Byte>
+        <Byte>C5</Byte>
+        <Byte>FB</Byte>
+        <Byte>58</Byte>
+        <Byte>C1</Byte>
+      </Before>
+      <Actual>
+        <Byte>C5</Byte>
+        <Byte>FB</Byte>
+        <Byte>11</Byte>
+        <Byte>42</Byte>
+        <Byte>28</Byte>
+      </Actual>
+      <After>
+        <Byte>C5</Byte>
+        <Byte>FB</Byte>
+        <Byte>11</Byte>
+        <Byte>52</Byte>
+        <Byte>70</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="80000008">
+      <Description>Change of vmovsd [rdx+70],xmm2</Description>
+      <AddressString>04499240</AddressString>
+      <Before>
+        <Byte>C5</Byte>
+        <Byte>FB</Byte>
+        <Byte>11</Byte>
+        <Byte>42</Byte>
+        <Byte>28</Byte>
+      </Before>
+      <Actual>
+        <Byte>C5</Byte>
+        <Byte>FB</Byte>
+        <Byte>11</Byte>
+        <Byte>52</Byte>
+        <Byte>70</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>83</Byte>
+        <Byte>C4</Byte>
+        <Byte>60</Byte>
+        <Byte>5D</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+  <LuaScript>--TRAINERGENERATORSTART--
+--This is autogenerated code. Changing code in this block will
+--get erased and rewritten if you regenerate the trainer code
+
+--Uncomment the following line if this is a Cheat Table format trainer and you don't want CE to show (Tip, save as .CETRAINER alternatively)
+--hideAllCEWindows()
+
+RequiredCEVersion=7.2
+if (getCEVersion==nil) or (getCEVersion()&lt;RequiredCEVersion) then
+  messageDialog('Please install Mugen JinFuu '..RequiredCEVersion, mtError, mbOK)
+  closeCE()
+end
+addresslist=getAddressList()
+memrec5=addresslist.getMemoryRecordByID(5)
+
+memrec5_hotkey0=memrec5.getHotkeyByID(0)
+
+function onPostHotkey0(Hotkey)
+  --Executed after the "toggle*" cheat got executed
+  local memrec=Hotkey.Owner
+  local isActive=memrec.Active --get the state after the hotkey got triggered
+  CETrainer.CHEAT0.setActive(isActive) --gui update, nothing else
+  if gPlaySoundOnAction then
+    if isActive then
+      playSound(gActivateSound)
+    else
+      playSound(gDeactivateSound)
+    end
+  end
+end
+
+memrec5_hotkey0.onPostHotkey=onPostHotkey0
+
+CETrainer.SEPERATOR.Visible=false
+
+getAutoAttachList().add("javaw.exe")
+gPlaySoundOnAction=false
+CETrainer.show()
+function AboutClick()
+  showMessage(gAboutText)
+end
+gAboutText=[[bind x]]
+
+function CloseClick()
+  --called by the close button onClick event, and when closing the form
+  closeCE()
+  return caFree --onClick doesn't care, but onClose would like a result
+end
+
+--TRAINERGENERATORSTOP--
+</LuaScript>
+</CheatTable>

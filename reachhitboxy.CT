@@ -1,0 +1,718 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="34">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>7</ID>
+      <Description>"duzy reach + hitbox / dziala"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : javaw.exe
+  Version: 
+  Date   : 2021-03-26
+  Author : zihho
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,C4 81 7A 10 44 DC 10 48 83) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  //vmovss xmm0,[r12+r11*8+10]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db C4 81 7A 10 44 DC 10
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 02C00CBD
+
+02C00C88: 49 3B C2                       - cmp rax,r10
+02C00C8B: 0F 85 CF 52 E9 FF              - jne 02A95F60
+02C00C91: 66 66 90                       - nop 3
+02C00C94: 0F 1F 84 00 00 00 00 00        - nop dword ptr [rax+rax+00000000]
+02C00C9C: 66 66 66 90                    - nop 4
+02C00CA0: 89 84 24 00 A0 FF FF           - mov [rsp-00006000],eax
+02C00CA7: 55                             - push rbp
+02C00CA8: 48 83 EC 10                    - sub rsp,10
+02C00CAC: 49 BA 08 F5 7A C0 05 00 00 00  - mov r10,00000005C07AF508
+02C00CB6: 45 8B 9A 94 00 00 00           - mov r11d,[r10+00000094]
+// ---------- INJECTING HERE ----------
+02C00CBD: C4 81 7A 10 44 DC 10           - vmovss xmm0,[r12+r11*8+10]
+// ---------- DONE INJECTING  ----------
+02C00CC4: 48 83 C4 10                    - add rsp,10
+02C00CC8: 5D                             - pop rbp
+02C00CC9: 85 05 31 F3 13 FE              - test [00D40000],eax
+02C00CCF: C3                             - ret 
+02C00CD0: BA F6 FF FF FF                 - mov edx,FFFFFFF6
+02C00CD5: 66 90                          - nop 2
+02C00CD7: E8 C4 4A E9 FF                 - call 02A957A0
+02C00CDC: CC                             - int 3 
+02C00CDD: F4                             - hlt 
+02C00CDE: F4                             - hlt 
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry Color="20000000">
+      <Description>Change of vcvtss2sd xmm7,xmm7,[r12+r9*8+10]</Description>
+      <AddressString>03FC2A9B</AddressString>
+      <Before>
+        <Byte>8A</Byte>
+        <Byte>94</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>C4</Byte>
+        <Byte>81</Byte>
+        <Byte>42</Byte>
+        <Byte>5A</Byte>
+        <Byte>7C</Byte>
+        <Byte>CC</Byte>
+        <Byte>10</Byte>
+      </Actual>
+      <After>
+        <Byte>4D</Byte>
+        <Byte>8D</Byte>
+        <Byte>0C</Byte>
+        <Byte>EC</Byte>
+        <Byte>41</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Change of vmovss xmm1,[r12+rbx*8+10]</Description>
+      <AddressString>04676E3A</AddressString>
+      <Before>
+        <Byte>85</Byte>
+        <Byte>D5</Byte>
+        <Byte>15</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>C4</Byte>
+        <Byte>C1</Byte>
+        <Byte>7A</Byte>
+        <Byte>10</Byte>
+        <Byte>4C</Byte>
+        <Byte>DC</Byte>
+        <Byte>10</Byte>
+      </Actual>
+      <After>
+        <Byte>45</Byte>
+        <Byte>8B</Byte>
+        <Byte>90</Byte>
+        <Byte>28</Byte>
+        <Byte>01</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Change of vcvtss2sd xmm6,xmm6,xmm1</Description>
+      <AddressString>04676E48</AddressString>
+      <Before>
+        <Byte>90</Byte>
+        <Byte>28</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>C5</Byte>
+        <Byte>CA</Byte>
+        <Byte>5A</Byte>
+        <Byte>F1</Byte>
+      </Actual>
+      <After>
+        <Byte>C4</Byte>
+        <Byte>81</Byte>
+        <Byte>7B</Byte>
+        <Byte>10</Byte>
+        <Byte>44</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Change of vmovsd xmm0,[r12+r10*8+38]</Description>
+      <AddressString>04676E4C</AddressString>
+      <Before>
+        <Byte>00</Byte>
+        <Byte>C5</Byte>
+        <Byte>CA</Byte>
+        <Byte>5A</Byte>
+        <Byte>F1</Byte>
+      </Before>
+      <Actual>
+        <Byte>C4</Byte>
+        <Byte>81</Byte>
+        <Byte>7B</Byte>
+        <Byte>10</Byte>
+        <Byte>44</Byte>
+        <Byte>D4</Byte>
+        <Byte>38</Byte>
+      </Actual>
+      <After>
+        <Byte>4C</Byte>
+        <Byte>89</Byte>
+        <Byte>44</Byte>
+        <Byte>24</Byte>
+        <Byte>70</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Change of vmovss xmm0,[rsi+10]</Description>
+      <AddressString>031ECC4D</AddressString>
+      <Before>
+        <Byte>84</Byte>
+        <Byte>2D</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>C5</Byte>
+        <Byte>FA</Byte>
+        <Byte>10</Byte>
+        <Byte>46</Byte>
+        <Byte>10</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>83</Byte>
+        <Byte>C4</Byte>
+        <Byte>40</Byte>
+        <Byte>5D</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Change of vmovss xmm0,[r12+r11*8+10]</Description>
+      <AddressString>02C00CBD</AddressString>
+      <Before>
+        <Byte>9A</Byte>
+        <Byte>94</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>C4</Byte>
+        <Byte>81</Byte>
+        <Byte>7A</Byte>
+        <Byte>10</Byte>
+        <Byte>44</Byte>
+        <Byte>DC</Byte>
+        <Byte>10</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>83</Byte>
+        <Byte>C4</Byte>
+        <Byte>10</Byte>
+        <Byte>5D</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Change of mov eax,[rbx]</Description>
+      <AddressString>6E290F82</AddressString>
+      <Before>
+        <Byte>48</Byte>
+        <Byte>3B</Byte>
+        <Byte>DE</Byte>
+        <Byte>73</Byte>
+        <Byte>2F</Byte>
+      </Before>
+      <Actual>
+        <Byte>8B</Byte>
+        <Byte>03</Byte>
+      </Actual>
+      <After>
+        <Byte>85</Byte>
+        <Byte>C0</Byte>
+        <Byte>75</Byte>
+        <Byte>04</Byte>
+        <Byte>33</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Change of vmovss xmm0,[r12+r11*8+10]</Description>
+      <AddressString>044D013D</AddressString>
+      <Before>
+        <Byte>9A</Byte>
+        <Byte>94</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>C4</Byte>
+        <Byte>81</Byte>
+        <Byte>7A</Byte>
+        <Byte>10</Byte>
+        <Byte>44</Byte>
+        <Byte>DC</Byte>
+        <Byte>10</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>83</Byte>
+        <Byte>C4</Byte>
+        <Byte>10</Byte>
+        <Byte>5D</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Change of vmovss xmm0,[r12+r11*8+10]</Description>
+      <AddressString>04788CC2</AddressString>
+      <Before>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>EB</Byte>
+        <Byte>07</Byte>
+      </Before>
+      <Actual>
+        <Byte>C4</Byte>
+        <Byte>81</Byte>
+        <Byte>7A</Byte>
+        <Byte>10</Byte>
+        <Byte>44</Byte>
+        <Byte>DC</Byte>
+        <Byte>10</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>83</Byte>
+        <Byte>C4</Byte>
+        <Byte>10</Byte>
+        <Byte>5D</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Change of vmovss xmm1,[r12+rbx*8+1C]</Description>
+      <AddressString>03AACCEF</AddressString>
+      <Before>
+        <Byte>86</Byte>
+        <Byte>42</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>C4</Byte>
+        <Byte>C1</Byte>
+        <Byte>7A</Byte>
+        <Byte>10</Byte>
+        <Byte>4C</Byte>
+        <Byte>DC</Byte>
+        <Byte>1C</Byte>
+      </Actual>
+      <After>
+        <Byte>C5</Byte>
+        <Byte>F2</Byte>
+        <Byte>59</Byte>
+        <Byte>0D</Byte>
+        <Byte>62</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Change of vmovss xmm1,[r12+rbx*8+1C]</Description>
+      <AddressString>03AADE8F</AddressString>
+      <Before>
+        <Byte>86</Byte>
+        <Byte>42</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>C4</Byte>
+        <Byte>C1</Byte>
+        <Byte>7A</Byte>
+        <Byte>10</Byte>
+        <Byte>4C</Byte>
+        <Byte>DC</Byte>
+        <Byte>1C</Byte>
+      </Actual>
+      <After>
+        <Byte>C5</Byte>
+        <Byte>F2</Byte>
+        <Byte>59</Byte>
+        <Byte>0D</Byte>
+        <Byte>42</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Change of vmovss xmm1,[r12+rbx*8+0C]</Description>
+      <AddressString>04A28512</AddressString>
+      <Before>
+        <Byte>7A</Byte>
+        <Byte>11</Byte>
+        <Byte>44</Byte>
+        <Byte>D4</Byte>
+        <Byte>38</Byte>
+      </Before>
+      <Actual>
+        <Byte>C4</Byte>
+        <Byte>C1</Byte>
+        <Byte>7A</Byte>
+        <Byte>10</Byte>
+        <Byte>4C</Byte>
+        <Byte>DC</Byte>
+        <Byte>0C</Byte>
+      </Actual>
+      <After>
+        <Byte>C4</Byte>
+        <Byte>81</Byte>
+        <Byte>7A</Byte>
+        <Byte>11</Byte>
+        <Byte>4C</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Change of vmovss [r12+r10*8+0C],xmm1</Description>
+      <AddressString>04A28519</AddressString>
+      <Before>
+        <Byte>90</Byte>
+        <Byte>90</Byte>
+        <Byte>90</Byte>
+        <Byte>90</Byte>
+        <Byte>90</Byte>
+      </Before>
+      <Actual>
+        <Byte>C4</Byte>
+        <Byte>81</Byte>
+        <Byte>7A</Byte>
+        <Byte>11</Byte>
+        <Byte>4C</Byte>
+        <Byte>D4</Byte>
+        <Byte>0C</Byte>
+      </Actual>
+      <After>
+        <Byte>44</Byte>
+        <Byte>8B</Byte>
+        <Byte>59</Byte>
+        <Byte>48</Byte>
+        <Byte>C4</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Change of vmovss xmm0,[r12+rbx*8+2C]</Description>
+      <AddressString>04A28524</AddressString>
+      <Before>
+        <Byte>90</Byte>
+        <Byte>44</Byte>
+        <Byte>8B</Byte>
+        <Byte>59</Byte>
+        <Byte>48</Byte>
+      </Before>
+      <Actual>
+        <Byte>C4</Byte>
+        <Byte>C1</Byte>
+        <Byte>7A</Byte>
+        <Byte>10</Byte>
+        <Byte>44</Byte>
+        <Byte>DC</Byte>
+        <Byte>2C</Byte>
+      </Actual>
+      <After>
+        <Byte>C4</Byte>
+        <Byte>81</Byte>
+        <Byte>7A</Byte>
+        <Byte>11</Byte>
+        <Byte>44</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Change of vmovss [r12+r10*8+2C],xmm0</Description>
+      <AddressString>04A2852B</AddressString>
+      <Before>
+        <Byte>90</Byte>
+        <Byte>90</Byte>
+        <Byte>90</Byte>
+        <Byte>90</Byte>
+        <Byte>90</Byte>
+      </Before>
+      <Actual>
+        <Byte>C4</Byte>
+        <Byte>81</Byte>
+        <Byte>7A</Byte>
+        <Byte>11</Byte>
+        <Byte>44</Byte>
+        <Byte>D4</Byte>
+        <Byte>2C</Byte>
+      </Actual>
+      <After>
+        <Byte>C4</Byte>
+        <Byte>C1</Byte>
+        <Byte>7A</Byte>
+        <Byte>10</Byte>
+        <Byte>4C</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Change of vmovss xmm1,[r12+rbx*8+3C]</Description>
+      <AddressString>04A28532</AddressString>
+      <Before>
+        <Byte>90</Byte>
+        <Byte>90</Byte>
+        <Byte>90</Byte>
+        <Byte>90</Byte>
+        <Byte>90</Byte>
+      </Before>
+      <Actual>
+        <Byte>C4</Byte>
+        <Byte>C1</Byte>
+        <Byte>7A</Byte>
+        <Byte>10</Byte>
+        <Byte>4C</Byte>
+        <Byte>DC</Byte>
+        <Byte>3C</Byte>
+      </Actual>
+      <After>
+        <Byte>C4</Byte>
+        <Byte>81</Byte>
+        <Byte>7A</Byte>
+        <Byte>11</Byte>
+        <Byte>4C</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Change of vmovss [r12+r10*8+3C],xmm1</Description>
+      <AddressString>04A28539</AddressString>
+      <Before>
+        <Byte>90</Byte>
+        <Byte>90</Byte>
+        <Byte>90</Byte>
+        <Byte>90</Byte>
+        <Byte>90</Byte>
+      </Before>
+      <Actual>
+        <Byte>C4</Byte>
+        <Byte>81</Byte>
+        <Byte>7A</Byte>
+        <Byte>11</Byte>
+        <Byte>4C</Byte>
+        <Byte>D4</Byte>
+        <Byte>3C</Byte>
+      </Actual>
+      <After>
+        <Byte>C4</Byte>
+        <Byte>C1</Byte>
+        <Byte>7A</Byte>
+        <Byte>10</Byte>
+        <Byte>44</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Change of vmovss xmm1,[r12+rbx*8+28]</Description>
+      <AddressString>04A2854E</AddressString>
+      <Before>
+        <Byte>7A</Byte>
+        <Byte>11</Byte>
+        <Byte>44</Byte>
+        <Byte>D4</Byte>
+        <Byte>14</Byte>
+      </Before>
+      <Actual>
+        <Byte>C4</Byte>
+        <Byte>C1</Byte>
+        <Byte>7A</Byte>
+        <Byte>10</Byte>
+        <Byte>4C</Byte>
+        <Byte>DC</Byte>
+        <Byte>28</Byte>
+      </Actual>
+      <After>
+        <Byte>C4</Byte>
+        <Byte>81</Byte>
+        <Byte>7A</Byte>
+        <Byte>11</Byte>
+        <Byte>4C</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Change of vmovss xmm0,[r12+r11*8+10]</Description>
+      <AddressString>03AA5D3D</AddressString>
+      <Before>
+        <Byte>9A</Byte>
+        <Byte>94</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>C4</Byte>
+        <Byte>81</Byte>
+        <Byte>7A</Byte>
+        <Byte>10</Byte>
+        <Byte>44</Byte>
+        <Byte>DC</Byte>
+        <Byte>10</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>83</Byte>
+        <Byte>C4</Byte>
+        <Byte>10</Byte>
+        <Byte>5D</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Change of vmovss xmm0,[r12+r11*8+10]</Description>
+      <AddressString>046C3002</AddressString>
+      <Before>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>EB</Byte>
+        <Byte>07</Byte>
+      </Before>
+      <Actual>
+        <Byte>C4</Byte>
+        <Byte>81</Byte>
+        <Byte>7A</Byte>
+        <Byte>10</Byte>
+        <Byte>44</Byte>
+        <Byte>DC</Byte>
+        <Byte>10</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>83</Byte>
+        <Byte>C4</Byte>
+        <Byte>10</Byte>
+        <Byte>5D</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Change of vmovss xmm1,[r12+rbx*8+10]</Description>
+      <AddressString>03A1FFB2</AddressString>
+      <Before>
+        <Byte>86</Byte>
+        <Byte>A2</Byte>
+        <Byte>16</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>C4</Byte>
+        <Byte>C1</Byte>
+        <Byte>7A</Byte>
+        <Byte>10</Byte>
+        <Byte>4C</Byte>
+        <Byte>DC</Byte>
+        <Byte>10</Byte>
+      </Actual>
+      <After>
+        <Byte>E9</Byte>
+        <Byte>5C</Byte>
+        <Byte>06</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Change of vmulss xmm7,xmm7,[r9+r10*4+10]</Description>
+      <AddressString>04439287</AddressString>
+      <Before>
+        <Byte>83</Byte>
+        <Byte>26</Byte>
+        <Byte>09</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>C4</Byte>
+        <Byte>81</Byte>
+        <Byte>42</Byte>
+        <Byte>59</Byte>
+        <Byte>7C</Byte>
+        <Byte>91</Byte>
+        <Byte>10</Byte>
+      </Actual>
+      <After>
+        <Byte>C5</Byte>
+        <Byte>C2</Byte>
+        <Byte>58</Byte>
+        <Byte>F5</Byte>
+        <Byte>44</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Change of vmulss xmm7,xmm7,[r9+r10*4+10]</Description>
+      <AddressString>0443945C</AddressString>
+      <Before>
+        <Byte>83</Byte>
+        <Byte>45</Byte>
+        <Byte>07</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>C4</Byte>
+        <Byte>81</Byte>
+        <Byte>42</Byte>
+        <Byte>59</Byte>
+        <Byte>7C</Byte>
+        <Byte>91</Byte>
+        <Byte>10</Byte>
+      </Actual>
+      <After>
+        <Byte>C5</Byte>
+        <Byte>C2</Byte>
+        <Byte>58</Byte>
+        <Byte>ED</Byte>
+        <Byte>44</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Change of vmulss xmm7,xmm7,[r9+r10*4+10]</Description>
+      <AddressString>04439699</AddressString>
+      <Before>
+        <Byte>83</Byte>
+        <Byte>08</Byte>
+        <Byte>05</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>C4</Byte>
+        <Byte>81</Byte>
+        <Byte>42</Byte>
+        <Byte>59</Byte>
+        <Byte>7C</Byte>
+        <Byte>91</Byte>
+        <Byte>10</Byte>
+      </Actual>
+      <After>
+        <Byte>C5</Byte>
+        <Byte>C2</Byte>
+        <Byte>58</Byte>
+        <Byte>ED</Byte>
+        <Byte>44</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+  <Comments>Info about this table:
+</Comments>
+</CheatTable>
